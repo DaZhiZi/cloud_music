@@ -1,0 +1,15 @@
+.detail > .tone-arm.show {
+    display: block;
+    top: -15px;
+    left: 220px;
+    width: 93px;
+    height: 141px;
+    background: url('../../../img/theme/black/content/detail/tone_arm.png');
+    transform-origin: 17px 17px;
+    transform: rotate(-40deg);
+    transition: transform 0.45s;
+}
+
+.detail > .tone-arm.show.play {
+    transform: rotate(-5deg);
+}

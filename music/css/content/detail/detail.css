@@ -1,0 +1,69 @@
+.detail {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    z-index: 10;
+    background: rgb(21, 23, 27);
+    transition: 0.3s;
+}
+
+.detail.show {
+    width: 100%;
+    height: 100%;
+}
+
+.detail > div {
+    position: absolute;
+    display: none;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    transition: 0.3s;
+}
+
+.detail > .collapse-detail.show {
+    display: block;
+    top: 32px;
+    right: 35px;
+    left: initial;  /* 避免继承自 .detail > div */
+    width: 36px;
+    height: 26px;
+    background: url('../../../img/theme/black/content/detail/collapse.png');
+    cursor: pointer;
+}
+
+.detail > .collapse-detail.show:hover {
+    background: url('../../../img/theme/black/content/detail/collapse_hover.png');
+}
+
+.detail > .title.show {
+    display: block;
+    top: 32px;
+    left: 521px;
+    width: auto;
+    color: rgb(208, 209, 209);
+    font-family: 微软雅黑;
+    font-size: 23px;
+}
+
+.detail > .singer.show {
+    display: block;
+    top: 72px;
+    left: 521px;
+    width: auto;
+    color: rgb(162, 163, 165);
+    font-size: 13px;
+}
+
+.expand-detail > .album {
+    position: absolute;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    top: 6px;
+    left: 6px;
+    background: url(../../../img/theme/black/content/sidebar/expand_detail/album.jpg);
+}

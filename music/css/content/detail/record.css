@@ -1,0 +1,24 @@
+@keyframes rotation {
+    0%{
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.detail > .record.show {
+    display: block;
+    top: 54px;
+    left: 75px;
+    width: 328px;
+    height: 328px;
+    background: url('../../../img/theme/black/content/detail/record.png');
+    animation: 40s rotation infinite;
+    animation-timing-function: linear;
+    animation-play-state: paused;
+}
+
+.detail > .record.show.play {
+    animation-play-state: running;
+}

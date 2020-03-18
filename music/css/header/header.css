@@ -1,0 +1,50 @@
+.header {
+    -webkit-app-region: drag;   /* 可拖拽 */
+    position: relative;
+    height: 50px;
+    background: rgb(34, 34, 37);
+    display: flex;
+    align-items: center;    /* flex 垂直居中 */
+    z-index: 11;            /* 挡住唱臂 */
+}
+
+#id-img-logo {
+    padding-left: 15px;
+}
+
+#id-img-skin, #id-img-letter, #id-img-setting, #id-img-minimize, #id-img-maximize, #id-img-close {
+    -webkit-app-region: no-drag;
+    position: absolute;
+    cursor: pointer;
+}
+
+#id-img-skin {
+    right: 218px;
+}
+
+#id-img-letter {
+    right: 176px;
+}
+
+#id-img-setting {
+    right: 135px;
+}
+
+#id-img-minimize {
+    right: 62px;
+}
+
+#id-img-maximize {
+    right: 39px;
+}
+
+#id-img-close {
+    right: 17px;
+}
+
+.line {
+    position: relative;
+    height: 2px;
+    background: url(../../img/theme/black/header/line.png);
+    z-index: 11;            /* 挡住唱臂 */
+}

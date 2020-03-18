@@ -1,0 +1,60 @@
+.footer {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    background: rgb(34, 34, 37);
+    display: flex;
+    align-items: center;
+}
+
+.control {
+    border: none;
+    cursor: pointer;
+}
+
+#id-img-previous {
+    margin-left: 30px;
+}
+
+#id-img-play {
+    margin: 0 24px;
+}
+
+#id-div-current, #id-div-duration {
+    color: white;
+    font-size: 13px;
+}
+
+#id-div-current {
+    margin-left: 32px;
+}
+
+#id-div-progress-bar {
+    position: relative;
+    margin-left: 13px;
+    margin-right: 11px;
+    width: 42%;
+    height: 4px;
+    background: rgb(69, 69, 70);
+    border-radius: 4px;
+}
+
+#id-div-current-bar {
+    width: 0;
+    height: 4px;
+    background: rgb(184, 37, 37);
+    border-radius: 4px;
+}
+
+#id-img-progress-button {
+    position: absolute;
+    transform: translate(-50%, -9px);
+    left: 0;
+    cursor: pointer
+}
+
+#id-img-progress-button:hover {
+    border-radius: 50%;
+    box-shadow: 0 0 20px -4px white;
+}

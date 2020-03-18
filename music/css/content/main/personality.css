@@ -1,0 +1,53 @@
+.personality-recommendation > .recommend {
+    margin: 0 30px;
+    padding-bottom: 10px;
+    color: rgb(220, 221, 228);
+    font-size: 18px;
+    font-family: 微软雅黑;
+    border-bottom: 1px solid rgb(35, 38, 44);
+}
+
+.recommend-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.recommend-cell {
+    position: relative;
+    display: inline-block;
+    width: 138px;
+    height: 138px;
+    background: white;
+    color: rgb(220, 221, 228);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.recommend-cell + .recommend-cell {
+    margin-left: 18px;
+}
+
+.recommend-cell > img {
+    margin-bottom: 3px;
+}
+
+.recommend-cell > .week {
+    position: absolute;
+    top: 18px;
+    width: 138px;
+    text-align: center;
+    color: rgb(130, 131, 133);
+    font-size: 14px;
+    font-family: 微软雅黑;
+}
+
+.recommend-cell > .date {
+    position: absolute;
+    top: 35px;
+    width: 138px;
+    text-align: center;
+    color: rgb(184, 37, 37);
+    font-size: 89px;
+    font-family: sans-serif;
+}

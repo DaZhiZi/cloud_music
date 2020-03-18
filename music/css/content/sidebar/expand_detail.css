@@ -1,0 +1,59 @@
+.expand-detail > div {
+    cursor: pointer;
+}
+
+.expand-detail > .album {
+    position: absolute;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    top: 6px;
+    left: 6px;
+    background: url(../../../img/theme/black/content/sidebar/expand_detail/album.png);
+}
+
+.expand-detail > .title {
+    position: absolute;
+    display: inline-block;
+    top: 12px;
+    left: 58px;
+    color: rgb(220, 221, 228);
+}
+
+.expand-detail > .singer {
+    position: absolute;
+    display: inline-block;
+    top: 32px;
+    left: 58px;
+    color: rgb(102, 102, 102);
+}
+
+.expand-detail > .singer:hover {
+    color: rgb(220, 221, 228);
+}
+
+.expand-detail > .love {
+    position: absolute;
+    display: inline-block;
+    width: 15px;
+    height: 13px;
+    top: 12px;
+    right: 9px;
+    background: url(../../../img/theme/black/content/sidebar/expand_detail/love/love1.png);
+}
+
+.expand-detail > .love:hover {
+    background: url(../../../img/theme/black/content/sidebar/expand_detail/love/love2.png);
+}
+
+.expand-detail > .hover-icon {
+    display: none;
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    top: 6px;
+    left: 6px;
+    background: url(../../../img/theme/black/content/sidebar/expand_detail/hover_icon.png);
+    background-color: gray;
+    opacity: 0.7;
+}

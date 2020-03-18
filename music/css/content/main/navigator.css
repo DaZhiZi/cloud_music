@@ -1,0 +1,28 @@
+.navigator {
+    width: 93%;
+    border-bottom: 1px solid rgb(32, 34, 38);
+    margin: 0 auto;
+    text-align: center;
+    color: rgb(130, 131, 133);
+    font-size: 15px;
+}
+
+.nav-item {
+    display: inline-block;
+    padding: 14px 0;
+    cursor: pointer;
+}
+
+.nav-item + .nav-item {
+    margin-left: 39px;
+}
+
+.nav-item:hover {
+    color: rgb(220, 221, 228);
+}
+
+.nav-active {
+    color: rgb(220, 221, 228);
+    border-bottom: 2px solid rgb(92, 94, 97);
+    padding-bottom: 12px;
+}

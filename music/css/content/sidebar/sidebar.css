@@ -1,0 +1,48 @@
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background: rgb(25, 27, 31);
+    border-right: 1px solid rgb(35, 38, 44);
+    color: rgb(173, 175, 178);
+    font-size: 13px;
+    font-family: sans-serif;
+}
+
+.sidebar > div {
+    margin-bottom: 10px;
+}
+
+.sidebar .first, .sidebar .cell {
+    display: flex;
+    align-items: center;    /* flex 垂直居中 */
+    height: 33px;
+}
+
+.sidebar .first {
+    padding-left: 10px;
+    color: rgb(124, 124, 124);
+}
+
+.sidebar .cell {
+    padding-left: 18px;
+    color: rgb(173, 175, 178);
+    cursor: pointer;
+}
+
+.sidebar .cell:hover {
+    color: rgb(220, 221, 227);
+}
+
+.sidebar .cell.sidebar-active {
+    background: url(../../../img/theme/black/content/sidebar/active.png);
+    color: rgb(220, 221, 227);
+}
+
+.expand-detail {
+    position: absolute;
+    bottom: 0;
+    width: inherit;
+    height: 56px;
+    border-top: 1px solid rgb(35, 38, 44);
+    margin: 0 !important;
+}

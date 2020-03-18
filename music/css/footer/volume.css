@@ -1,0 +1,29 @@
+#id-img-volume {
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+#id-div-volume {
+    position: relative;
+    margin-left: 13px;
+    margin-right: 11px;
+    width: 100px;
+    height: 4px;
+    background: rgb(24, 24, 26);
+    border-radius: 4px;
+}
+
+#id-div-current-volume {
+    width: 100%;
+    height: 4px;
+    background: rgb(184, 37, 37);
+    border-radius: 4px;
+}
+
+#id-img-volume-button {
+    position: absolute;
+    width: 13px;
+    transform: translate(-50%, -9px);
+    left: 100%;
+    cursor: pointer
+}

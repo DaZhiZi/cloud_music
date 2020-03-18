@@ -1,0 +1,5 @@
+body {
+    margin: 0;
+    background: rgb(22, 24, 28);
+    overflow: hidden;   /* detail.css 中 .collapse-detail 的 top 导致出现滚动条 */
+}

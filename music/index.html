@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>大侄子的云音乐</title>
+    <link rel="stylesheet" href="css/index.css">
+
+    <link rel="stylesheet" href="css/header/header.css">
+
+    <link rel="stylesheet" href="css/content/content.css">
+    <link rel="stylesheet" href="css/content/sidebar/sidebar.css">
+    <link rel="stylesheet" href="css/content/sidebar/expand_detail.css">
+    <link rel="stylesheet" href="css/content/main/main.css">
+    <link rel="stylesheet" href="css/content/main/navigator.css">
+    <link rel="stylesheet" href="css/content/main/personality.css">
+    <link rel="stylesheet" href="css/content/detail/detail.css">
+    <link rel="stylesheet" href="css/content/detail/record.css">
+    <link rel="stylesheet" href="css/content/detail/tone_arm.css">
+    <link rel="stylesheet" href="css/content/playlist/playlist.css">
+    <link rel="stylesheet" href="css/content/playlist/title.css">
+
+    <link rel="stylesheet" href="css/footer/footer.css">
+    <link rel="stylesheet" href="css/footer/volume.css">
+    <link rel="stylesheet" href="css/footer/cycle.css">
+    <link rel="stylesheet" href="css/footer/playlist.css">
+    <!--    <link rel="stylesheet" href="plugin/ka.slideimage/ka_slideimage.css">-->
+
+    <script src="js/utils/utils.js"></script>
+    <!--        <script src="js/kaq_min.js"></script>-->
+    <!--        <script src="plugin/ka.slideimage/ka.slideimage.js"></script>-->
+</head>
+<body>
+<audio id="id-audio-player"></audio>
+
+<div class="header">
+    <img id="id-img-logo" src="img/theme/black/header/logo.png" alt="">
+
+    <img id="id-img-skin" src="img/theme/black/header/skin.png" alt="">
+    <img id="id-img-letter" src="img/theme/black/header/letter.png" alt="">
+    <img id="id-img-setting" src="img/theme/black/header/setting.png" alt="" title="设置">
+
+    <img id="id-img-minimize" src="img/theme/black/header/minimize.png" alt="" title="最小化">
+    <img id="id-img-maximize" src="img/theme/black/header/maximize.png" alt="" title="最大化">
+    <img id="id-img-close" src="img/theme/black/header/close.png" alt="" title="关闭">
+</div>
+<div class="line"></div>
+
+<div class="content">
+    <div class="sidebar">
+        <div class="recommend">
+            <div class="first">推荐</div>
+            <div id="id-div-discover-music" class="cell sidebar-active">
+                <img src="img/theme/black/content/sidebar/discover_music_hover.png" alt="">
+                &nbsp;&nbsp; &nbsp;&nbsp;发现音乐
+            </div>
+            <div id="id-div-private-fm" class="cell">
+                <img src="img/theme/black/content/sidebar/private_fm.png" alt="">
+                &nbsp;&nbsp;&nbsp;大侄子的秘密
+            </div>
+            <div id="id-div-video" class="cell">
+                <img src="img/theme/black/content/sidebar/video.png" alt="">
+                &nbsp;&nbsp;&nbsp;&nbsp;视频
+            </div>
+            <div id="id-div-friend" class="cell">
+                <img src="img/theme/black/content/sidebar/friend.png" alt="">
+                &nbsp;&nbsp;&nbsp;&nbsp;朋友
+            </div>
+        </div>
+        <div class="my-music">
+            <div class="first">大侄子的音乐</div>
+            <div id="id-div-local-music" class="cell">
+                <img src="img/theme/black/content/sidebar/local_music.png" alt="">
+                &nbsp;&nbsp;&nbsp;&nbsp;本地音乐
+            </div>
+            <div id="id-div-download-management" class="cell">
+                <img src="img/theme/black/content/sidebar/download_management.png" alt="">
+                &nbsp;&nbsp;&nbsp;&nbsp;下载管理
+            </div>
+        </div>
+        <div class="created-song-list">
+            <div class="first">created song</div>
+            <div id="id-div-my-favorite-music" class="cell">
+                <img src="img/theme/black/content/sidebar/my_favorite_music.png" alt="">
+                &nbsp;&nbsp;&nbsp;我的最爱
+            </div>
+        </div>
+        <div class="expand-detail">
+            <div class="album"> </div>
+            <div class="title"></div>
+            <div class="singer"> 大侄子 </div>
+            <div class="love"></div>
+            <div class="share"></div>
+            <div class="hover-icon show" title="展开音乐详情页"></div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="navigator">
+            <div class="nav-item nav-active">个性推荐</div>
+            <div class="nav-item">歌单</div>
+            <div class="nav-item">主播电台</div>
+            <div class="nav-item">排行榜</div>
+            <div class="nav-item">歌手</div>
+            <div class="nav-item">最新音乐</div>
+        </div>
+        <div class="personality-recommendation">
+            <div class="slide-image"></div>
+            <div class="recommend">推荐歌单</div>
+            <div class="recommend-container">
+                <!-- 为了消除空白所做的妥协, 解决方案的讨论:
+                https://www.zhihu.com/question/21468450 -->
+                <div class="recommend-cell">
+                    <img src="img/theme/black/content/main/recommend/recommend0.png" alt="">
+                    <div class="week">星期日</div>
+                    <div class="date">1</div>
+                    <span>每日歌曲推荐<br></span>
+                    <br>
+                </div
+                >
+                <div class="recommend-cell">
+                    <img src="img/theme/black/content/main/recommend/recommend1.png" alt="">
+                    <span>「福音」信仰之名 恩典记号</span>
+                </div
+                >
+                <div class="recommend-cell">
+                    <img src="img/theme/black/content/main/recommend/recommend2.png" alt="">
+                    <span>「中文赞美诗」风和浪传送他的名</span>
+                </div
+                >
+                <div class="recommend-cell">
+                    <img src="img/theme/black/content/main/recommend/recommend3.png" alt="">
+                    <span>可爱的歌名和一个可爱的你</span>
+                </div
+                >
+                <div class="recommend-cell">
+                    <img src="img/theme/black/content/main/recommend/recommend4.png" alt="">
+                    <span>欢快小调 给百无聊赖的生活来支兴奋剂</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="detail">
+        <div class="record"></div>
+        <div class="tone-arm"></div>
+        <div class="collapse-detail"></div>
+        <div class="title"></div>
+        <div class="singer"></div>
+    </div>
+    <div class="playlist">
+        <div class="title">
+            <div class="tabs">
+                <div class="list active">播放列表</div>
+                <div class="history">历史记录</div>
+            </div>
+            <img id="id-img-close-list" src="img/theme/black/content/playlist/close_list.png" alt="">
+        </div>
+        <div class="count">总0首</div>
+        <div class="container"></div>
+        <div class="history"></div>
+    </div>
+</div>
+<div class="footer">
+    <img id="id-img-previous" class="control" src="img/theme/black/footer/control_button/previous.png" title="上一首">
+    <img id="id-img-play" class="control" src="img/theme/black/footer/control_button/play.png" data-img='play'
+         title="播放">
+    <img id="id-img-next" class="control" src="img/theme/black/footer/control_button/next.png" title="下一首">
+
+    <div id="id-div-current">00:00</div>
+    <div id="id-div-progress-bar">
+        <div id="id-div-current-bar"></div>
+        <img id="id-img-progress-button" src="img/common/progress_button.png" alt="">
+    </div>
+    <div id="id-div-duration">00:00</div>
+
+    <img id="id-img-volume" src="img/theme/black/footer/volume/volume1.png" alt="" title="静音" data-silent="false"
+         data-volume="1">
+    <div id="id-div-volume">
+        <div id="id-div-current-volume"></div>
+        <img id="id-img-volume-button" src="img/common/progress_button.png" alt="">
+    </div>
+
+    <img id="id-img-cycle" src="img/theme/black/footer/cycle/list_cycle.png" alt="" title="列表循环" data-cycle="list">
+    <div id="id-div-playlist">
+        <img id="id-img-playlist" src="img/theme/black/footer/playlist/playlist.png" alt="">
+        <div id="id-div-playlist-count">0</div>
+    </div>
+</div>
+<script src="js/index.js"></script>
+<script src="js/player/player.js"></script>
+<!-- header -->
+<script src="js/header/header.js"></script>
+<script src="js/header/manipulate_window/manipulate_window.js"></script>
+
+<!-- content -->
+<script src="js/content/content.js"></script>
+<script src="js/content/sidebar/sidebar.js"></script>
+
+<script src="js/content/main/main.js"></script>
+<script src="js/content/main/navigator/navigator.js"></script>
+<script src="js/content/main/recommend/recommend.js"></script>
+
+<script src="js/content/detail/detail.js"></script>
+
+<!-- footer -->
+<script src="js/footer/footer.js"></script>
+<script src="js/footer/control_button/control_button.js"></script>
+<script src="js/footer/progress_bar/progress_bar.js"></script>
+<script src="js/footer/volume/volume.js"></script>
+<script src="js/footer/cycle/cycle.js"></script>
+<script src="js/footer/playlist/playlist.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

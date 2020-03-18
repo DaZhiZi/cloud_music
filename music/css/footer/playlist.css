@@ -1,0 +1,16 @@
+#id-div-playlist {
+    position: relative;
+    height: 19px;
+    margin-left: 32px;
+    cursor: pointer;
+}
+
+#id-div-playlist-count {
+    position: absolute;
+    width: 26px;
+    left: 20px;
+    top: 1.5px;
+    color: rgb(220, 221, 228);
+    font-size: 13px;
+    text-align: center;
+}
