@@ -90,7 +90,14 @@ const rjust = (str, size, delimeter = '0') => {
 const mySetAttr = (element, key, newValue) => {
     element.setAttribute(key, newValue)
 }
-
+const mySetAttrAll = (element, obj) => {
+    // log('obj', obj, myTypeOf(obj))
+    for (let k in obj) {
+        // log('k', k)
+        let v = obj[k]
+        mySetAttr(element, k, v)
+    }
+}
 const myGetAttr = (element, key) => {
     return element.getAttribute(key)
 }

@@ -41,7 +41,7 @@ class Player {
         mySetHtml(e('.expand-detail > .title'), self.title)
         mySetHtml(e('.detail > .title'), self.title)
         // singer
-        mySetHtml(e('.expand-detail > .singer'), self.title)
+        mySetHtml(e('.expand-detail > .singer'), self.singer)
         let s = `歌手: ${self.singer}`
         mySetHtml(e('.detail > .singer'), s)
         // duration
