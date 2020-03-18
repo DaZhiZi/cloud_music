@@ -24,9 +24,13 @@ class Player {
         this.src = this.song.src
         this.title = this.song.title
         this.singer = this.song.singer
+        this.updateSong()
     }
     static new(songs) {
         return new this(songs)
+    }
+    songLen() {
+        return this.songs.length
     }
     findSong(id) {
         for (let s of this.songs) {
@@ -64,9 +68,9 @@ class Player {
     play() {
         this.playing = true
         this.player.play()
+        log('this.player', this.player)
         // 旋转
         Detail.playAnimation()
-        // PlayList.updateHistory()
     }
     pause() {
         this.playing = false
@@ -84,19 +88,23 @@ class Player {
     previous() {
         let len = this.songs.length
         this.currentIndex = (this.currentIndex - 1 + len) % len
-        this.updateSong()
+        this.update()
         if (this.playing) {
             this.play()
-            // ProgressBar.lastX = 0
+            ProgressBar.lastX = 0
         }
+    }
+    update() {
+        this.updateSong()
+        this.initHtml()
     }
     next() {
         let len = this.songs.length
         this.currentIndex = (this.currentIndex + 1) % len
-        this.updateSong()
+        this.update()
         if (this.playing) {
             this.play()
-            // ProgressBar.lastX = 0
+            ProgressBar.lastX = 0
         }
     }
     init() {
@@ -108,7 +116,7 @@ class Player {
     single() {
         if (this.playing) {
             this.play()
-            // ProgressBar.lastX = 0
+            ProgressBar.lastX = 0
         }
     }
     random() {
@@ -118,22 +126,23 @@ class Player {
         this.updateSong()
         if (this.playing) {
             this.play()
-            // ProgressBar.lastX = 0
+            ProgressBar.lastX = 0
         }
     }
-    formattedDuration() {
+    formattedCurrentTime() {
         let current = Math.floor(this.player.currentTime)
         let min = zfill(String(Math.floor(current / 60)))
         let second = zfill(String(current % 60))
         return `${min}:${second}`
     }
     updateCurrentTime(duration) {
+        log('duration  updateCurrentTime', duration)
         this.player.currentTime = duration
-    }
+     }
     duration() {
         return this.player.duration
     }
-    formatDuration() {
+    formattedDuration() {
         let duration = Math.floor(this.player.duration)
         let min = zfill(String(Math.floor(duration / 60)))
         let second = zfill(String(duration % 60))
@@ -143,6 +152,7 @@ class Player {
         return `${this.player.currentTime / this.player.duration * 100}%`
     }
     adjustVolume(volume) {
+        // volume
         this.player.volume = volume
     }
 }
