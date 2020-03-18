@@ -7,7 +7,7 @@ Detail.collapseDetail = () => {
         log('click collapse 折叠')
         let clsName = 'show'
         removeClass(e('.detail'), clsName)
-        removeClassAll(e('.detail div'), clsName)
+        deleteClassAll(es('.detail div'), clsName)
     })
 }
 

@@ -139,6 +139,11 @@ const addClassAll = (className, addName) => {
         e.classList.add(addName)
     }
 }
+const giveClassAll = (elements, className) => {
+    for (let ele of elements) {
+        ele.classList.add(className)
+    }
+}
 const removeChildAll = (element, idName) => {
     let selector = '#' + idName
     let elements = element.querySelector(selector)
@@ -147,7 +152,11 @@ const removeChildAll = (element, idName) => {
         elements.removeChild(e)
     }
 }
-
+const deleteClassAll = (elements, className) => {
+    for (let ele of elements) {
+        ele.classList.remove(className)
+    }
+}
 const removeAll = (sel) => {
     let tags = document.querySelectorAll(sel)
     for (let i = 0; i < tags.length; i++) {
@@ -659,8 +668,3 @@ const fac = function (n) {
     }
 }
 
-// 返回 start 到 end 之间的整数, 是双闭区间
-const randomBetween = function (start, end) {
-    let n = Math.random() * (end - start + 1)
-    return Math.floor(n + start)
-}

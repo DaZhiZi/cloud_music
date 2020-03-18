@@ -1,1 +1,384 @@
-'use strict'; var log = console.log, hyphen2camel = function (a) { var b = a; if (a.includes('-')) { var c = a.split('-'); b = c[0]; for (var d = 1; d < c.length; d++)b += c[d][0].toUpperCase() + c[d].slice(1) } return b }, nodes2array = function (a) { for (var b = [], c = 0; c < a.length; c++)b.push(a[c]); return b }, KaQ = function (a) { if (a instanceof HTMLDocument) this.target = 'ready'; else if ('function' == typeof a) this.target = 'ready', this.ready(a); else if (Array.isArray(a)) this.elements = a; else { var b = []; try { b = document.querySelectorAll(a) } catch (c) { b.push(a) } this.elements = b } }, $ = function (a) { var b = new KaQ(a); return b }; $.ajax = function (a) { var b = new XMLHttpRequest; a.type == void 0 && (a.type = 'get'), a.async == void 0 && (a.async = !0), b.open(a.type, a.url, a.async), b.setRequestHeader('Content-Type', a.contentType), b.onreadystatechange = function () { 4 == b.readyState && a.success(b.response) }, b.send(a.data) }; var animate = function (a, b) { var c = 2 < arguments.length && arguments[2] !== void 0 ? arguments[2] : 400, d = arguments[3]; 'fast' == c ? c = 200 : 'slow' == c && (c = 600); for (var h, e = '', f = Object.keys(b), g = 0; g < f.length; g++)h = f[g], a.style[h] = window.getComputedStyle(a)[h], e += h + ' ' + c + 'ms,'; a.style.transition = e.slice(0, -1), setTimeout(function () { for (var h in b) a.style[h] = b[h] }, 0), setTimeout(function () { d && d() }, c) }; KaQ.prototype.animate = function (a, b, c) { this.elements.forEach(function (d) { return animate(d, a, b, c) }) }; var fadeInElement = function (a) { var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400; 'fast' == b ? b = 200 : 'slow' == b && (b = 600), showElement(a), a.style.opacity = 0, a.style.transition = 'opacity ' + b + 'ms', setTimeout(function () { a.style.opacity = 1 }, 0) }, fadeOutElement = function (a) { var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400; 'fast' == b ? b = 200 : 'slow' == b && (b = 600), a.style.opacity = 1, a.style.transition = 'opacity ' + b + 'ms', a.style.opacity = 0, setTimeout(function () { hideElement(a) }, b) }; KaQ.prototype.fadeIn = function (a) { this.elements.forEach(function (b) { return fadeInElement(b, a) }) }, KaQ.prototype.fadeOut = function (a) { this.elements.forEach(function (b) { return fadeOutElement(b, a) }) }, KaQ.prototype.fadeToggle = function (a) { this.elements.forEach(function (b) { var c = window.getComputedStyle(b).display; 'none' == c ? fadeInElement(b, a) : fadeOutElement(b, a) }) }, KaQ.prototype.fadeTo = function (a, b) { this.elements.forEach(function (c) { 'fast' == a ? a = 200 : 'slow' == a ? a = 600 : 'number' != typeof a && (a = 400), c.style.opacity = 1, c.style.transition = 'opacity ' + a + 'ms', c.style.opacity = b }) }; var hideElement = function (a) { var b = window.getComputedStyle(a).display; 'none' != b && (a.dataset.oldStyle = b), a.style.display = 'none' }, showElement = function (a) { var b = a.dataset.oldStyle; if ('none' == b || b == void 0) { var d = a.tagName.toLowerCase(); a.style.display = ['div', 'p', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(d) ? 'block' : 'inline' } else a.style.display = b }; KaQ.prototype.hide = function () { this.elements.forEach(function (a) { return hideElement(a) }) }, KaQ.prototype.show = function () { this.elements.forEach(function (a) { return showElement(a) }) }, KaQ.slide = { down: !1, up: !1 }; var slideDownElement = function (a) { var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400; if ('none' == window.getComputedStyle(a).display && KaQ.slide.up) { KaQ.slide.up = !1, 'fast' == b ? b = 200 : 'slow' == b && (b = 600), a.style.display = 'block'; var c = window.getComputedStyle(a).marginTop, d = window.getComputedStyle(a).marginBottom, e = window.getComputedStyle(a).borderTopWidth, f = window.getComputedStyle(a).borderBottomWidth, g = window.getComputedStyle(a).paddingTop, h = window.getComputedStyle(a).paddingBottom, j = window.getComputedStyle(a).height; a.style.display = 'none', setTimeout(function () { a.style.marginTop = a.style.marginBottom = a.style.borderTopWidth = a.style.borderBottomWidth = a.style.paddingTop = a.style.paddingBottom = a.style.height = 0, a.style.transition = b + 'ms', a.style.display = 'block', a.style.overflow = 'hidden' }, 0), setTimeout(function () { a.style.marginTop = c, a.style.marginBottom = d, a.style.borderTopWidth = e, a.style.borderBottomWidth = f, a.style.paddingTop = g, a.style.paddingBottom = h, a.style.height = j }, 100), setTimeout(function () { KaQ.slide.down = !0 }, 100 + b) } }, slideUpElement = function (a) { var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400; if ('none' != window.getComputedStyle(a).display && KaQ.slide.down) { KaQ.slide.down = !1, 'fast' == b ? b = 200 : 'slow' == b && (b = 600); var c = window.getComputedStyle(a).marginTop, d = window.getComputedStyle(a).marginBottom, e = window.getComputedStyle(a).borderTopWidth, f = window.getComputedStyle(a).borderBottomWidth, g = window.getComputedStyle(a).paddingTop, h = window.getComputedStyle(a).paddingBottom, j = window.getComputedStyle(a).height; a.style.transition = b + 'ms', a.style.overflow = 'hidden', a.style.marginTop = '0', a.style.marginBottom = '0', a.style.borderTopWidth = '0', a.style.borderBottomWidth = '0', a.style.paddingTop = '0', a.style.paddingBottom = '0', a.style.height = '0', setTimeout(function () { a.style.display = 'none', a.style.marginTop = c, a.style.marginBottom = d, a.style.borderTopWidth = e, a.style.borderBottomWidth = f, a.style.paddingTop = g, a.style.paddingBottom = h, a.style.height = j, KaQ.slide.up = !0 }, b) } }, slideToggleElement = function (a) { var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400; 'none' == window.getComputedStyle(a).display ? (KaQ.slide.up = !0, slideDownElement(a, b)) : KaQ.slide.down && slideUpElement(a, b) }; KaQ.prototype.slideDown = function (a) { this.elements.forEach(function (b) { KaQ.slide.up = !0, slideDownElement(b, a) }) }, KaQ.prototype.slideUp = function (a) { this.elements.forEach(function (b) { KaQ.slide.down = !0, slideUpElement(b, a) }) }, KaQ.prototype.slideToggle = function (a) { this.elements.forEach(function (b) { return slideToggleElement(b, a) }) }; var stop = function (a) { var b = window.getComputedStyle(a).cssText.split('; '); a.style.transition = 'none'; for (var c = 0; c < b.length; c++) { var d = b[c].split(': '), e = hyphen2camel(d[0]), f = d[1]; a.style[e] = f } }; KaQ.prototype.stop = function () { this.elements.forEach(function (a) { return stop(a) }) }, KaQ.prototype.toggle = function () { this.elements.forEach(function (a) { var b = window.getComputedStyle(a).display; 'none' == b ? showElement(a) : hideElement(a) }) }; var _typeof = 'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator ? function (a) { return typeof a } : function (a) { return a && 'function' == typeof Symbol && a.constructor === Symbol && a !== Symbol.prototype ? 'symbol' : typeof a }; function _toConsumableArray(a) { if (Array.isArray(a)) { for (var b = 0, c = Array(a.length); b < a.length; b++)c[b] = a[b]; return c } return Array.from(a) } ['click', 'dblclick', 'mouseenter', 'mouseleave', 'mousedown', 'mouseup', 'keypress', 'keydown', 'keyup', 'submit', 'change', 'input', 'focus', 'blur'].forEach(function (event) { eval('\n        KaQ.prototype.' + event + ' = function(callback) {\n            this.elements.forEach(ele => {\n                ele.addEventListener(\'' + event + '\', callback)\n            })\n        }\n    ') }), KaQ.prototype.hover = function (a, b) { this.elements.forEach(function (c) { c.addEventListener('mouseenter', a), c.addEventListener('mouseleave', b) }) }, KaQ.prototype.on = function (a, b) { this.elements.forEach(function (c) { c.addEventListener(a, b) }) }, KaQ.prototype.append = function () { for (var a = arguments.length, b = Array(a), c = 0; c < a; c++)b[c] = arguments[c]; this.elements.forEach(function (d) { b.forEach(function (f) { d.insertAdjacentHTML('beforeend', f) }) }) }, KaQ.prototype.prepend = function () { for (var a = arguments.length, b = Array(a), c = 0; c < a; c++)b[c] = arguments[c]; this.elements.forEach(function (d) { b.forEach(function (f) { d.insertAdjacentHTML('afterbegin', f) }) }) }, KaQ.prototype.after = function () { for (var a = arguments.length, b = Array(a), c = 0; c < a; c++)b[c] = arguments[c]; this.elements.forEach(function (d) { b.forEach(function (f) { d.insertAdjacentHTML('afterend', f) }) }) }, KaQ.prototype.before = function () { for (var a = arguments.length, b = Array(a), c = 0; c < a; c++)b[c] = arguments[c]; this.elements.forEach(function (d) { b.forEach(function (f) { d.insertAdjacentHTML('beforebegin', f) }) }) }, KaQ.prototype.hasClass = function (a) { var b = !1; return this.elements.forEach(function (c) { c.classList.contains(a) && (b = !0) }), b }, KaQ.prototype.addClass = function (a) { a = a.split(' '), this.elements.forEach(function (b) { for (var c = 0; c < a.length; c++)b.classList.add(a[c]) }) }, KaQ.prototype.removeClass = function (a) { this.elements.forEach(function (b) { return b.classList.remove(a) }) }, KaQ.prototype.toggleClass = function (a) { this.elements.forEach(function (b) { b.classList.contains(a) ? b.classList.remove(a) : b.classList.add(a) }) }, KaQ.prototype.css = function (a, b) { var c = this; if ('object' == ('undefined' == typeof a ? 'undefined' : _typeof(a))) { var d = function _loop(f) { var g = hyphen2camel(f), h = a[f]; c.elements.forEach(function (j) { j.style[g] = h }) }; for (var f in a) d(f) } else { var f = hyphen2camel(a); if (b) this.elements.forEach(function (g) { g.style[f] = b }); else return this.elements[0].style[f] } }, KaQ.prototype.text = function (a) { return a ? void (this.elements[0].innerText = a) : this.elements[0].innerText }, KaQ.prototype.html = function (a) { return a ? void (this.elements[0].innerHTML = a) : this.elements[0].innerHTML }, KaQ.prototype.val = function (a) { return a ? void (this.elements[0].value = a) : this.elements[0].value }, KaQ.prototype.attr = function (a, b) { if ('string' == typeof a && !b) return this.elements[0].getAttribute(a); if ('string' == typeof a && 'string' == typeof b) this.elements[0].setAttribute(a, b); else if ('object' == ('undefined' == typeof a ? 'undefined' : _typeof(a)) && !b) for (var c in a) this.elements[0].setAttribute(c, a[c]) }, KaQ.prototype.remove = function () { this.elements.forEach(function (a) { return a.remove() }) }, KaQ.prototype.empty = function () { this.elements.forEach(function (a) { a.innerHTML = '' }) }, KaQ.prototype.width = function () { return +window.getComputedStyle(this.elements[0]).width.slice(0, -2) }, KaQ.prototype.height = function () { return +window.getComputedStyle(this.elements[0]).height.slice(0, -2) }, KaQ.prototype.innerWidth = function () { var a = +window.getComputedStyle(this.elements[0]).paddingLeft.slice(0, -2), b = +window.getComputedStyle(this.elements[0]).paddingLeft.slice(0, -2); return this.width() + a + b }, KaQ.prototype.innerHeight = function () { var a = +window.getComputedStyle(this.elements[0]).paddingTop.slice(0, -2), b = +window.getComputedStyle(this.elements[0]).paddingBottom.slice(0, -2); return this.height() + a + b }, KaQ.prototype.outerWidth = function (a) { var b = 0; if (a) { var c = +window.getComputedStyle(this.elements[0]).marginLeft.slice(0, -2), d = +window.getComputedStyle(this.elements[0]).marginRight.slice(0, -2); b = c + d } var f = +window.getComputedStyle(this.elements[0]).borderLeftWidth.slice(0, -2), g = +window.getComputedStyle(this.elements[0]).borderRightWidth.slice(0, -2); return this.innerWidth() + f + g + b }, KaQ.prototype.outerHeight = function (a) { var b = 0; if (a) { var c = +window.getComputedStyle(this.elements[0]).marginTop.slice(0, -2), d = +window.getComputedStyle(this.elements[0]).marginBottom.slice(0, -2); b = c + d } var f = +window.getComputedStyle(this.elements[0]).borderTopWidth.slice(0, -2), g = +window.getComputedStyle(this.elements[0]).borderBottomWidth.slice(0, -2); return this.innerHeight() + f + g + b }, KaQ.prototype.ready = function (code) { 'ready' == this.target && document.addEventListener('DOMContentLoaded', function () { 'function' == typeof code ? eval(code)() : eval(code) }) }, KaQ.prototype.children = function (a) { var b = []; return this.elements.forEach(function (c) { var d = a && c.querySelectorAll(a), f = []; d && (f = nodes2array(d)); for (var h, g = 0; g < c.children.length; g++)h = c.children[g], 0 == f.length ? b.push(h) : f.includes(h) && b.push(h) }), new KaQ(b) }, KaQ.prototype.find = function (a) { var b = []; return this.elements.forEach(function (c) { var d = c.querySelectorAll(a); b.push.apply(b, _toConsumableArray(nodes2array(d))) }), new KaQ(b) }, KaQ.prototype.first = function () { return new KaQ([this.elements[0]]) }, KaQ.prototype.last = function () { var a = this.elements.length; return new KaQ([this.elements[a - 1]]) }, KaQ.prototype.eq = function (a) { return new KaQ([this.elements[a]]) }, KaQ.prototype.filter = function (a) { var b = nodes2array(document.querySelectorAll(a)), c = []; return this.elements.forEach(function (d) { b.includes(d) && c.push(d) }), new KaQ(c) }, KaQ.prototype.not = function (a) { var b = nodes2array(document.querySelectorAll(a)), c = []; return this.elements.forEach(function (d) { b.includes(d) || c.push(d) }), new KaQ(c) }, KaQ.prototype.parent = function () { var a = []; return this.elements.forEach(function (b) { return a.push(b.parentElement) }), new KaQ(a) }, KaQ.prototype.parents = function () { var a = []; return this.elements.forEach(function (b) { for (; b.parentElement;)a.push(b.parentElement), b = b.parentElement }), new KaQ(a) }, KaQ.prototype.parentsUntil = function (a) { var b = []; return this.elements.forEach(function (c) { for (var d = c.closest(a); c.parentElement && c.parentElement != d;)b.push(c.parentElement), c = c.parentElement }), new KaQ(b) }, KaQ.prototype.closest = function (a) { var b = []; return this.elements.forEach(function (c) { b.push(c.closest(a)) }), new KaQ(b) }, KaQ.prototype.siblings = function (a) { var b = []; return this.elements.forEach(function (c) { var d = a && c.parentElement.querySelectorAll(a), f = []; d && (f = nodes2array(d)); for (var g = c.parentElement.firstElementChild; g;)g != c && (0 == f.length ? b.push(g) : f.includes(g) && b.push(g)), g = g.nextElementSibling }), new KaQ(b) }, KaQ.prototype.next = function () { var a = []; return this.elements.forEach(function (b) { a.push(b.nextElementSibling) }), new KaQ(a) }, KaQ.prototype.nextAll = function () { var a = []; return this.elements.forEach(function (b) { for (var c = b.nextElementSibling; c;)a.push(c), c = c.nextElementSibling }), new KaQ(a) }, KaQ.prototype.nextUntil = function (a) { var b = []; return this.elements.forEach(function (c) { for (var d = c.parentElement.querySelector(a), f = c.nextElementSibling; f && f != d;)b.push(f), f = f.nextElementSibling }), new KaQ(b) }, KaQ.prototype.prev = function () { var a = []; return this.elements.forEach(function (b) { a.push(b.previousElementSibling) }), new KaQ(a) }, KaQ.prototype.prevAll = function () { var a = []; return this.elements.forEach(function (b) { for (var c = b.previousElementSibling; c;)a.push(c), c = c.previousElementSibling }), new KaQ(a) }, KaQ.prototype.prevUntil = function (a) { var b = []; return this.elements.forEach(function (c) { for (var d = c.parentElement.querySelector(a), f = c.previousElementSibling; f && f != d;)b.push(f), f = f.previousElementSibling }), new KaQ(b) };
+'use strict';
+var log = console.log, hyphen2camel = function (a) {
+    var b = a;
+    if (a.includes('-')) {
+        var c = a.split('-');
+        b = c[0];
+        for (var d = 1; d < c.length; d++) b += c[d][0].toUpperCase() + c[d].slice(1)
+    }
+    return b
+}, nodes2array = function (a) {
+    for (var b = [], c = 0; c < a.length; c++) b.push(a[c]);
+    return b
+}, KaQ = function (a) {
+    if (a instanceof HTMLDocument) this.target = 'ready'; else if ('function' == typeof a) this.target = 'ready', this.ready(a); else if (Array.isArray(a)) this.elements = a; else {
+        var b = [];
+        try {
+            b = document.querySelectorAll(a)
+        } catch (c) {
+            b.push(a)
+        }
+        this.elements = b
+    }
+}, $ = function (a) {
+    var b = new KaQ(a);
+    return b
+};
+$.ajax = function (a) {
+    var b = new XMLHttpRequest;
+    a.type == void 0 && (a.type = 'get'), a.async == void 0 && (a.async = !0), b.open(a.type, a.url, a.async), b.setRequestHeader('Content-Type', a.contentType), b.onreadystatechange = function () {
+        4 == b.readyState && a.success(b.response)
+    }, b.send(a.data)
+};
+var animate = function (a, b) {
+    var c = 2 < arguments.length && arguments[2] !== void 0 ? arguments[2] : 400, d = arguments[3];
+    'fast' == c ? c = 200 : 'slow' == c && (c = 600);
+    for (var h, e = '', f = Object.keys(b), g = 0; g < f.length; g++) h = f[g], a.style[h] = window.getComputedStyle(a)[h], e += h + ' ' + c + 'ms,';
+    a.style.transition = e.slice(0, -1), setTimeout(function () {
+        for (var h in b) a.style[h] = b[h]
+    }, 0), setTimeout(function () {
+        d && d()
+    }, c)
+};
+KaQ.prototype.animate = function (a, b, c) {
+    this.elements.forEach(function (d) {
+        return animate(d, a, b, c)
+    })
+};
+var fadeInElement = function (a) {
+    var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400;
+    'fast' == b ? b = 200 : 'slow' == b && (b = 600), showElement(a), a.style.opacity = 0, a.style.transition = 'opacity ' + b + 'ms', setTimeout(function () {
+        a.style.opacity = 1
+    }, 0)
+}, fadeOutElement = function (a) {
+    var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400;
+    'fast' == b ? b = 200 : 'slow' == b && (b = 600), a.style.opacity = 1, a.style.transition = 'opacity ' + b + 'ms', a.style.opacity = 0, setTimeout(function () {
+        hideElement(a)
+    }, b)
+};
+KaQ.prototype.fadeIn = function (a) {
+    this.elements.forEach(function (b) {
+        return fadeInElement(b, a)
+    })
+}, KaQ.prototype.fadeOut = function (a) {
+    this.elements.forEach(function (b) {
+        return fadeOutElement(b, a)
+    })
+}, KaQ.prototype.fadeToggle = function (a) {
+    this.elements.forEach(function (b) {
+        var c = window.getComputedStyle(b).display;
+        'none' == c ? fadeInElement(b, a) : fadeOutElement(b, a)
+    })
+}, KaQ.prototype.fadeTo = function (a, b) {
+    this.elements.forEach(function (c) {
+        'fast' == a ? a = 200 : 'slow' == a ? a = 600 : 'number' != typeof a && (a = 400), c.style.opacity = 1, c.style.transition = 'opacity ' + a + 'ms', c.style.opacity = b
+    })
+};
+var hideElement = function (a) {
+    var b = window.getComputedStyle(a).display;
+    'none' != b && (a.dataset.oldStyle = b), a.style.display = 'none'
+}, showElement = function (a) {
+    var b = a.dataset.oldStyle;
+    if ('none' == b || b == void 0) {
+        var d = a.tagName.toLowerCase();
+        a.style.display = ['div', 'p', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(d) ? 'block' : 'inline'
+    } else a.style.display = b
+};
+KaQ.prototype.hide = function () {
+    this.elements.forEach(function (a) {
+        return hideElement(a)
+    })
+}, KaQ.prototype.show = function () {
+    this.elements.forEach(function (a) {
+        return showElement(a)
+    })
+}, KaQ.slide = {down: !1, up: !1};
+var slideDownElement = function (a) {
+    var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400;
+    if ('none' == window.getComputedStyle(a).display && KaQ.slide.up) {
+        KaQ.slide.up = !1, 'fast' == b ? b = 200 : 'slow' == b && (b = 600), a.style.display = 'block';
+        var c = window.getComputedStyle(a).marginTop, d = window.getComputedStyle(a).marginBottom,
+            e = window.getComputedStyle(a).borderTopWidth, f = window.getComputedStyle(a).borderBottomWidth,
+            g = window.getComputedStyle(a).paddingTop, h = window.getComputedStyle(a).paddingBottom,
+            j = window.getComputedStyle(a).height;
+        a.style.display = 'none', setTimeout(function () {
+            a.style.marginTop = a.style.marginBottom = a.style.borderTopWidth = a.style.borderBottomWidth = a.style.paddingTop = a.style.paddingBottom = a.style.height = 0, a.style.transition = b + 'ms', a.style.display = 'block', a.style.overflow = 'hidden'
+        }, 0), setTimeout(function () {
+            a.style.marginTop = c, a.style.marginBottom = d, a.style.borderTopWidth = e, a.style.borderBottomWidth = f, a.style.paddingTop = g, a.style.paddingBottom = h, a.style.height = j
+        }, 100), setTimeout(function () {
+            KaQ.slide.down = !0
+        }, 100 + b)
+    }
+}, slideUpElement = function (a) {
+    var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400;
+    if ('none' != window.getComputedStyle(a).display && KaQ.slide.down) {
+        KaQ.slide.down = !1, 'fast' == b ? b = 200 : 'slow' == b && (b = 600);
+        var c = window.getComputedStyle(a).marginTop, d = window.getComputedStyle(a).marginBottom,
+            e = window.getComputedStyle(a).borderTopWidth, f = window.getComputedStyle(a).borderBottomWidth,
+            g = window.getComputedStyle(a).paddingTop, h = window.getComputedStyle(a).paddingBottom,
+            j = window.getComputedStyle(a).height;
+        a.style.transition = b + 'ms', a.style.overflow = 'hidden', a.style.marginTop = '0', a.style.marginBottom = '0', a.style.borderTopWidth = '0', a.style.borderBottomWidth = '0', a.style.paddingTop = '0', a.style.paddingBottom = '0', a.style.height = '0', setTimeout(function () {
+            a.style.display = 'none', a.style.marginTop = c, a.style.marginBottom = d, a.style.borderTopWidth = e, a.style.borderBottomWidth = f, a.style.paddingTop = g, a.style.paddingBottom = h, a.style.height = j, KaQ.slide.up = !0
+        }, b)
+    }
+}, slideToggleElement = function (a) {
+    var b = 1 < arguments.length && arguments[1] !== void 0 ? arguments[1] : 400;
+    'none' == window.getComputedStyle(a).display ? (KaQ.slide.up = !0, slideDownElement(a, b)) : KaQ.slide.down && slideUpElement(a, b)
+};
+KaQ.prototype.slideDown = function (a) {
+    this.elements.forEach(function (b) {
+        KaQ.slide.up = !0, slideDownElement(b, a)
+    })
+}, KaQ.prototype.slideUp = function (a) {
+    this.elements.forEach(function (b) {
+        KaQ.slide.down = !0, slideUpElement(b, a)
+    })
+}, KaQ.prototype.slideToggle = function (a) {
+    this.elements.forEach(function (b) {
+        return slideToggleElement(b, a)
+    })
+};
+var stop = function (a) {
+    var b = window.getComputedStyle(a).cssText.split('; ');
+    a.style.transition = 'none';
+    for (var c = 0; c < b.length; c++) {
+        var d = b[c].split(': '), e = hyphen2camel(d[0]), f = d[1];
+        a.style[e] = f
+    }
+};
+KaQ.prototype.stop = function () {
+    this.elements.forEach(function (a) {
+        return stop(a)
+    })
+}, KaQ.prototype.toggle = function () {
+    this.elements.forEach(function (a) {
+        var b = window.getComputedStyle(a).display;
+        'none' == b ? showElement(a) : hideElement(a)
+    })
+};
+var _typeof = 'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator ? function (a) {
+    return typeof a
+} : function (a) {
+    return a && 'function' == typeof Symbol && a.constructor === Symbol && a !== Symbol.prototype ? 'symbol' : typeof a
+};
+
+function _toConsumableArray(a) {
+    if (Array.isArray(a)) {
+        for (var b = 0, c = Array(a.length); b < a.length; b++) c[b] = a[b];
+        return c
+    }
+    return Array.from(a)
+}
+
+['click', 'dblclick', 'mouseenter', 'mouseleave', 'mousedown', 'mouseup', 'keypress', 'keydown', 'keyup', 'submit', 'change', 'input', 'focus', 'blur'].forEach(function (event) {
+    eval('\n        KaQ.prototype.' + event + ' = function(callback) {\n            this.elements.forEach(ele => {\n                ele.addEventListener(\'' + event + '\', callback)\n            })\n        }\n    ')
+}), KaQ.prototype.hover = function (a, b) {
+    this.elements.forEach(function (c) {
+        c.addEventListener('mouseenter', a), c.addEventListener('mouseleave', b)
+    })
+}, KaQ.prototype.on = function (a, b) {
+    this.elements.forEach(function (c) {
+        c.addEventListener(a, b)
+    })
+}, KaQ.prototype.append = function () {
+    for (var a = arguments.length, b = Array(a), c = 0; c < a; c++) b[c] = arguments[c];
+    this.elements.forEach(function (d) {
+        b.forEach(function (f) {
+            d.insertAdjacentHTML('beforeend', f)
+        })
+    })
+}, KaQ.prototype.prepend = function () {
+    for (var a = arguments.length, b = Array(a), c = 0; c < a; c++) b[c] = arguments[c];
+    this.elements.forEach(function (d) {
+        b.forEach(function (f) {
+            d.insertAdjacentHTML('afterbegin', f)
+        })
+    })
+}, KaQ.prototype.after = function () {
+    for (var a = arguments.length, b = Array(a), c = 0; c < a; c++) b[c] = arguments[c];
+    this.elements.forEach(function (d) {
+        b.forEach(function (f) {
+            d.insertAdjacentHTML('afterend', f)
+        })
+    })
+}, KaQ.prototype.before = function () {
+    for (var a = arguments.length, b = Array(a), c = 0; c < a; c++) b[c] = arguments[c];
+    this.elements.forEach(function (d) {
+        b.forEach(function (f) {
+            d.insertAdjacentHTML('beforebegin', f)
+        })
+    })
+}, KaQ.prototype.hasClass = function (a) {
+    var b = !1;
+    return this.elements.forEach(function (c) {
+        c.classList.contains(a) && (b = !0)
+    }), b
+}, KaQ.prototype.addClass = function (a) {
+    a = a.split(' '), this.elements.forEach(function (b) {
+        for (var c = 0; c < a.length; c++) b.classList.add(a[c])
+    })
+}, KaQ.prototype.removeClass = function (a) {
+    this.elements.forEach(function (b) {
+        return b.classList.remove(a)
+    })
+}, KaQ.prototype.toggleClass = function (a) {
+    this.elements.forEach(function (b) {
+        b.classList.contains(a) ? b.classList.remove(a) : b.classList.add(a)
+    })
+}, KaQ.prototype.css = function (a, b) {
+    var c = this;
+    if ('object' == ('undefined' == typeof a ? 'undefined' : _typeof(a))) {
+        var d = function _loop(f) {
+            var g = hyphen2camel(f), h = a[f];
+            c.elements.forEach(function (j) {
+                j.style[g] = h
+            })
+        };
+        for (var f in a) d(f)
+    } else {
+        var f = hyphen2camel(a);
+        if (b) this.elements.forEach(function (g) {
+            g.style[f] = b
+        }); else return this.elements[0].style[f]
+    }
+}, KaQ.prototype.text = function (a) {
+    return a ? void (this.elements[0].innerText = a) : this.elements[0].innerText
+}, KaQ.prototype.html = function (a) {
+    return a ? void (this.elements[0].innerHTML = a) : this.elements[0].innerHTML
+}, KaQ.prototype.val = function (a) {
+    return a ? void (this.elements[0].value = a) : this.elements[0].value
+}, KaQ.prototype.attr = function (a, b) {
+    if ('string' == typeof a && !b) return this.elements[0].getAttribute(a);
+    if ('string' == typeof a && 'string' == typeof b) this.elements[0].setAttribute(a, b); else if ('object' == ('undefined' == typeof a ? 'undefined' : _typeof(a)) && !b) for (var c in a) this.elements[0].setAttribute(c, a[c])
+}, KaQ.prototype.remove = function () {
+    this.elements.forEach(function (a) {
+        return a.remove()
+    })
+}, KaQ.prototype.empty = function () {
+    this.elements.forEach(function (a) {
+        a.innerHTML = ''
+    })
+}, KaQ.prototype.width = function () {
+    return +window.getComputedStyle(this.elements[0]).width.slice(0, -2)
+}, KaQ.prototype.height = function () {
+    return +window.getComputedStyle(this.elements[0]).height.slice(0, -2)
+}, KaQ.prototype.innerWidth = function () {
+    var a = +window.getComputedStyle(this.elements[0]).paddingLeft.slice(0, -2),
+        b = +window.getComputedStyle(this.elements[0]).paddingLeft.slice(0, -2);
+    return this.width() + a + b
+}, KaQ.prototype.innerHeight = function () {
+    var a = +window.getComputedStyle(this.elements[0]).paddingTop.slice(0, -2),
+        b = +window.getComputedStyle(this.elements[0]).paddingBottom.slice(0, -2);
+    return this.height() + a + b
+}, KaQ.prototype.outerWidth = function (a) {
+    var b = 0;
+    if (a) {
+        var c = +window.getComputedStyle(this.elements[0]).marginLeft.slice(0, -2),
+            d = +window.getComputedStyle(this.elements[0]).marginRight.slice(0, -2);
+        b = c + d
+    }
+    var f = +window.getComputedStyle(this.elements[0]).borderLeftWidth.slice(0, -2),
+        g = +window.getComputedStyle(this.elements[0]).borderRightWidth.slice(0, -2);
+    return this.innerWidth() + f + g + b
+}, KaQ.prototype.outerHeight = function (a) {
+    var b = 0;
+    if (a) {
+        var c = +window.getComputedStyle(this.elements[0]).marginTop.slice(0, -2),
+            d = +window.getComputedStyle(this.elements[0]).marginBottom.slice(0, -2);
+        b = c + d
+    }
+    var f = +window.getComputedStyle(this.elements[0]).borderTopWidth.slice(0, -2),
+        g = +window.getComputedStyle(this.elements[0]).borderBottomWidth.slice(0, -2);
+    return this.innerHeight() + f + g + b
+}, KaQ.prototype.ready = function (code) {
+    'ready' == this.target && document.addEventListener('DOMContentLoaded', function () {
+        'function' == typeof code ? eval(code)() : eval(code)
+    })
+}, KaQ.prototype.children = function (a) {
+    var b = [];
+    return this.elements.forEach(function (c) {
+        var d = a && c.querySelectorAll(a), f = [];
+        d && (f = nodes2array(d));
+        for (var h, g = 0; g < c.children.length; g++) h = c.children[g], 0 == f.length ? b.push(h) : f.includes(h) && b.push(h)
+    }), new KaQ(b)
+}, KaQ.prototype.find = function (a) {
+    var b = [];
+    return this.elements.forEach(function (c) {
+        var d = c.querySelectorAll(a);
+        b.push.apply(b, _toConsumableArray(nodes2array(d)))
+    }), new KaQ(b)
+}, KaQ.prototype.first = function () {
+    return new KaQ([this.elements[0]])
+}, KaQ.prototype.last = function () {
+    var a = this.elements.length;
+    return new KaQ([this.elements[a - 1]])
+}, KaQ.prototype.eq = function (a) {
+    return new KaQ([this.elements[a]])
+}, KaQ.prototype.filter = function (a) {
+    var b = nodes2array(document.querySelectorAll(a)), c = [];
+    return this.elements.forEach(function (d) {
+        b.includes(d) && c.push(d)
+    }), new KaQ(c)
+}, KaQ.prototype.not = function (a) {
+    var b = nodes2array(document.querySelectorAll(a)), c = [];
+    return this.elements.forEach(function (d) {
+        b.includes(d) || c.push(d)
+    }), new KaQ(c)
+}, KaQ.prototype.parent = function () {
+    var a = [];
+    return this.elements.forEach(function (b) {
+        return a.push(b.parentElement)
+    }), new KaQ(a)
+}, KaQ.prototype.parents = function () {
+    var a = [];
+    return this.elements.forEach(function (b) {
+        for (; b.parentElement;) a.push(b.parentElement), b = b.parentElement
+    }), new KaQ(a)
+}, KaQ.prototype.parentsUntil = function (a) {
+    var b = [];
+    return this.elements.forEach(function (c) {
+        for (var d = c.closest(a); c.parentElement && c.parentElement != d;) b.push(c.parentElement), c = c.parentElement
+    }), new KaQ(b)
+}, KaQ.prototype.closest = function (a) {
+    var b = [];
+    return this.elements.forEach(function (c) {
+        b.push(c.closest(a))
+    }), new KaQ(b)
+}, KaQ.prototype.siblings = function (a) {
+    var b = [];
+    return this.elements.forEach(function (c) {
+        var d = a && c.parentElement.querySelectorAll(a), f = [];
+        d && (f = nodes2array(d));
+        for (var g = c.parentElement.firstElementChild; g;) g != c && (0 == f.length ? b.push(g) : f.includes(g) && b.push(g)), g = g.nextElementSibling
+    }), new KaQ(b)
+}, KaQ.prototype.next = function () {
+    var a = [];
+    return this.elements.forEach(function (b) {
+        a.push(b.nextElementSibling)
+    }), new KaQ(a)
+}, KaQ.prototype.nextAll = function () {
+    var a = [];
+    return this.elements.forEach(function (b) {
+        for (var c = b.nextElementSibling; c;) a.push(c), c = c.nextElementSibling
+    }), new KaQ(a)
+}, KaQ.prototype.nextUntil = function (a) {
+    var b = [];
+    return this.elements.forEach(function (c) {
+        for (var d = c.parentElement.querySelector(a), f = c.nextElementSibling; f && f != d;) b.push(f), f = f.nextElementSibling
+    }), new KaQ(b)
+}, KaQ.prototype.prev = function () {
+    var a = [];
+    return this.elements.forEach(function (b) {
+        a.push(b.previousElementSibling)
+    }), new KaQ(a)
+}, KaQ.prototype.prevAll = function () {
+    var a = [];
+    return this.elements.forEach(function (b) {
+        for (var c = b.previousElementSibling; c;) a.push(c), c = c.previousElementSibling
+    }), new KaQ(a)
+}, KaQ.prototype.prevUntil = function (a) {
+    var b = [];
+    return this.elements.forEach(function (c) {
+        for (var d = c.parentElement.querySelector(a), f = c.previousElementSibling; f && f != d;) b.push(f), f = f.previousElementSibling
+    }), new KaQ(b)
+};

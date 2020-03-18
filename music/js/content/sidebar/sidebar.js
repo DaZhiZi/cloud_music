@@ -87,7 +87,7 @@ const detailClick = () => {
         let className = 'show'
         addClass(e('.detail'), className)
         log('detail', e('.detail'))
-        addClassAll(es('.detail  div'), className)
+        giveClassAll(es('.detail  div'), className)
      })
 }
 Sidebar.bindEvents = () => {
