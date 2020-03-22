@@ -1,6 +1,7 @@
 const Music = {}
 
 const __main = () => {
+    // log('Music', Music, typeof Music.header)
     Music.header()
     Music.content()
     Music.footer()
@@ -15,4 +16,3 @@ const __main = () => {
         'slideImg/img/8.png',
     ])
 }
-__main()
